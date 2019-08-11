@@ -1,6 +1,8 @@
 package com.biconsulting.ryankolbe.domain.employee;
 
 import com.biconsulting.ryankolbe.domain.demographic.Gender;
+import com.biconsulting.ryankolbe.factory.demographic.GenderFactory;
+import com.biconsulting.ryankolbe.factory.employee.EmployeeFactory;
 
 import java.util.Objects;
 
@@ -12,16 +14,28 @@ public class EmployeeGender implements Comparable<EmployeeGender> {
     }
 
     public EmployeeGender(Builder builder) {
-        this.employee = builder.employee;
-        this.gender = builder.gender;
+        employee = EmployeeFactory.createEmployee(builder.empNumber, builder.empFirstName, builder.empLastName);
+        gender = GenderFactory.createGender(builder.genderId, builder.genderDesc);
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public String getEmpNumber() {
+        return employee.getEmpNumber();
     }
 
-    public Gender getGender() {
-        return gender;
+    public String getEmpFirstName() {
+        return employee.getEmpFirstName();
+    }
+
+    public String getEmpLastName() {
+        return employee.getEmpLastName();
+    }
+
+    public String getGenderId() {
+        return gender.getGenderId();
+    }
+
+    public String getGenderDesc() {
+        return gender.getGenderDescr();
     }
 
     @Override
@@ -37,13 +51,13 @@ public class EmployeeGender implements Comparable<EmployeeGender> {
         if (this == o) return true;
         if (!(o instanceof EmployeeGender)) return false;
         EmployeeGender that = (EmployeeGender) o;
-        return getEmployee().equals(that.getEmployee()) &&
-                getGender().equals(that.getGender());
+        return employee.equals(that.employee) &&
+                gender.equals(that.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmployee(), getGender());
+        return Objects.hash(employee, gender);
     }
 
     @Override
@@ -52,22 +66,43 @@ public class EmployeeGender implements Comparable<EmployeeGender> {
     }
 
     public static class Builder {
-        private Employee employee;
-        private Gender gender;
+        private String empNumber;
+        private String empFirstName;
+        private String empLastName;
+        private String genderId;
+        private String genderDesc;
 
-        public Builder employee(Employee employee) {
-            this.employee = employee;
+        public Builder empNumber(String empNumber) {
+            this.empNumber = empNumber;
             return this;
         }
 
-        public Builder gender(Gender gender) {
-            this.gender = gender;
+        public Builder empFirstName(String empFirstName) {
+            this.empFirstName = empFirstName;
+            return this;
+        }
+
+        public Builder empLastName(String empLastName) {
+            this.empLastName = empLastName;
+            return this;
+        }
+
+        public Builder genderId(String genderId) {
+            this.genderId = genderId;
+            return this;
+        }
+
+        public Builder genderDesc(String genderDesc) {
+            this.genderDesc = genderDesc;
             return this;
         }
 
         public Builder copy(EmployeeGender employeeGender) {
-            this.employee = employeeGender.employee;
-            this.gender = employeeGender.gender;
+            this.empNumber = employeeGender.getEmpNumber();
+            this.empFirstName = employeeGender.getEmpFirstName();
+            this.empLastName = employeeGender.getEmpLastName();
+            this.genderId = employeeGender.getGenderId();
+            this.genderDesc = employeeGender.getGenderDesc();
             return this;
         }
 

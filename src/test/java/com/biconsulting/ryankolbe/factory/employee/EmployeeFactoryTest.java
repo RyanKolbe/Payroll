@@ -8,7 +8,7 @@ public class EmployeeFactoryTest {
 
     @Test
     public void createEmployee() {
-        Employee employee = EmployeeFactory.createEmployee("Ryan", "Kolbe");
+        Employee employee = EmployeeFactory.createEmployee("0001", "Ryan", "Kolbe");
         Assert.assertEquals("Ryan", employee.getEmpFirstName());
     }
 }

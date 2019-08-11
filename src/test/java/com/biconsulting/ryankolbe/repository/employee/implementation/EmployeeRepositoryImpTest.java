@@ -17,7 +17,7 @@ public class EmployeeRepositoryImpTest {
 
     @BeforeClass
     public static void setUp() {
-        employee = EmployeeFactory.createEmployee("Ryan", "Kolbe");
+        employee = EmployeeFactory.createEmployee("0001", "Ryan", "Kolbe");
         employees.add(employeeRepository.create(employee));
     }
 
@@ -34,7 +34,8 @@ public class EmployeeRepositoryImpTest {
 
     @Test
     public void create() {
-        Employee createEmployee = EmployeeFactory.createEmployee("Deidre", "Van Vuuren");
+        Employee createEmployee = EmployeeFactory.createEmployee("0002",
+                "Deidre", "Van Vuuren");
         employees.add(employeeRepository.create(createEmployee));
         Assert.assertEquals(createEmployee, employeeRepository.read(createEmployee.getEmpNumber()));
     }
@@ -55,14 +56,17 @@ public class EmployeeRepositoryImpTest {
 
     @Test
     public void delete() {
-        Employee deleteEmployee = EmployeeFactory.createEmployee("Cassidy", "Van Vuuren");
+        Employee deleteEmployee = EmployeeFactory.createEmployee("0003",
+                "Cassidy", "Van Vuuren");
         employees.add(employeeRepository.create(deleteEmployee));
         employees.remove(deleteEmployee);
+        employeeRepository.delete(deleteEmployee.getEmpNumber());
         Assert.assertEquals(employees.size(), employeeRepository.getAll().size());
+        System.out.println(employeeRepository.getAll().toString());
         Assert.assertFalse(employeeRepository.getAll()
                 .iterator()
                 .next()
-                .getEmpLastName()
-                .contains("Van Vuuren"));
+                .getEmpFirstName()
+                .contains("Cassidy"));
     }
 }

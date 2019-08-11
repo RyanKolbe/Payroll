@@ -8,8 +8,8 @@ public class EmployeeGenderFactoryTest {
 
     @Test
     public void createEmployeeGender() {
-        EmployeeGender employeeGender = EmployeeGenderFactory.createEmployeeGender("Ryan",
-                "Kolbe", "0001", "Male");
-        Assert.assertEquals("Kolbe", employeeGender.getEmployee().getEmpLastName());
+        EmployeeGender employeeGender = EmployeeGenderFactory.createEmployeeGender("0001",
+                "Ryan", "Kolbe", "0001", "Male");
+        Assert.assertEquals("Kolbe", employeeGender.getEmpLastName());
     }
 }
