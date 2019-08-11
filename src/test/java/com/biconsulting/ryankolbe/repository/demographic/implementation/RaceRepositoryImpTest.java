@@ -42,7 +42,7 @@ public class RaceRepositoryImpTest {
     @Test
     public void read() {
         Race readRace = raceRepository.getAll().iterator().next();
-        Assert.assertEquals(readRace.getRaceDesc(), raceRepository.read(readRace.getRaceId()).getRaceDesc());
+        Assert.assertEquals(readRace, raceRepository.read(readRace.getRaceId()));
     }
 
     @Test
