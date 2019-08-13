@@ -49,17 +49,27 @@ public class EmployeeGenderRepositoryImpTest {
 
     @Test
     public void update() {
-        String newLastName = "Doofus";
+        String newLastName = "Kolbe";
         EmployeeGender updateEmployeeGender = new EmployeeGender.Builder()
                 .copy(employeeGender)
                 .empLastName(newLastName)
                 .build();
         employeeGenders.add(employeeGenderRepository.update(updateEmployeeGender));
         Assert.assertEquals(updateEmployeeGender, employeeGenderRepository.read(updateEmployeeGender.getEmpNumber()));
-
     }
 
     @Test
     public void delete() {
+        EmployeeGender deleteEmployeeGender = EmployeeGenderFactory.createEmployeeGender("0001",
+                "Ryan", "Kolbe", "0003", "Unknown");
+        employeeGenders.add(employeeGenderRepository.create(deleteEmployeeGender));
+        employeeGenders.remove(deleteEmployeeGender);
+        employeeGenderRepository.delete(deleteEmployeeGender.getEmpNumber());
+        Assert.assertEquals(employeeGenders.size(), employeeGenderRepository.getAll().size());
+        Assert.assertFalse(employeeGenderRepository.getAll()
+                .iterator()
+                .next()
+                .getGenderDesc()
+                .contains("Unknown"));
     }
 }

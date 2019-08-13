@@ -62,7 +62,6 @@ public class EmployeeRepositoryImpTest {
         employees.remove(deleteEmployee);
         employeeRepository.delete(deleteEmployee.getEmpNumber());
         Assert.assertEquals(employees.size(), employeeRepository.getAll().size());
-        System.out.println(employeeRepository.getAll().toString());
         Assert.assertFalse(employeeRepository.getAll()
                 .iterator()
                 .next()
