@@ -39,7 +39,7 @@ public class RaceRepositoryImp implements RaceRepository {
     public Race update(Race race) {
         Race raceTemp = search(race.getRaceId());
         if (raceTemp != null) {
-            this.races.remove(race);
+            this.races.remove(raceTemp);
             return create(race);
         }
         return null;

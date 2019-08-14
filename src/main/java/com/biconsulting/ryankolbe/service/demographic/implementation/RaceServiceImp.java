@@ -16,7 +16,7 @@ public class RaceServiceImp implements RaceService {
     }
 
     public static RaceServiceImp getRaceService() {
-        if (raceService == null) raceService = RaceServiceImp.getRaceService();
+        if (raceService == null) raceService = new RaceServiceImp();
         return raceService;
     }
 

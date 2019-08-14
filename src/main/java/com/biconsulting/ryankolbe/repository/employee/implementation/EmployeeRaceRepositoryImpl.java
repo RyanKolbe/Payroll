@@ -26,7 +26,7 @@ public class EmployeeRaceRepositoryImpl implements EmployeeRaceRepository {
 
     @Override
     public EmployeeRace create(EmployeeRace employeeRace) {
-        this.employeeRaces.add(employeeRace);
+        employeeRaces.add(employeeRace);
         return employeeRace;
     }
 
