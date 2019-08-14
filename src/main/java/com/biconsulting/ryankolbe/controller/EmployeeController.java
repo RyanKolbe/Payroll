@@ -21,9 +21,6 @@ public class EmployeeController {
     private EmployeeRaceServiceImpl employeeRaceService = EmployeeRaceServiceImpl.getEmployeeRaceService();
     private GenderServiceImp genderService = GenderServiceImp.getGenderService();
     private RaceServiceImp raceService = RaceServiceImp.getRaceService();
-    private Gender gender = null;
-    private Race race = null;
-    private Employee employee = null;
 
     public Employee createEmployee(String firstName, String lastName, String genderDesc, String raceDesc) {
         Employee employee = EmployeeFactory.createEmployee(Misc.generateId(), firstName, lastName);
